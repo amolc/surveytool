@@ -1,0 +1,11 @@
+var connect = require('connect');
+var app = connect();
+var bodyParser = require('body-parser');
+var serveStatic = require('serve-static');
+var http = require("http").createServer(app);
+var path = require('path');
+var survey = connect();
+survey.use(serveStatic('survey'));
+app.use('/',survey);
+http.listen(3000);
+console.log("Magic at 3000");
