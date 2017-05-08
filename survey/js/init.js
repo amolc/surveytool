@@ -17,6 +17,7 @@
 	10.Typed js for title tag
 	11.click function
 	12.clone function
+	13.hidecategory function
 	
 	notifyForm function
 	animateStart function
@@ -31,6 +32,7 @@ $(document).ready(function(){
   notifyForm();
   pogody();
   $('.la-anim-1').addClass('la-animate');
+  $('.questions').hide();
 });
 /*****Ready function end*****/
 
@@ -64,13 +66,13 @@ $(window).on("resize", function () {
 function pogody(){
 	/*Counter JS*/
 	$('#countdown').countdown({
-		date: '8/24/2017',
+		date: '5/24/2017',
 	});
 	/*About Owl JS*/
 	$('.qualities').owlCarousel({
     loop:true,
 	autoplay:true,
-	nav:false,
+	nav:true,
 	dots:true,
 	smartSpeed: 1500,
     margin:30,
@@ -112,6 +114,31 @@ function pogody(){
         },
 		1000:{
             items:2,
+            nav:true
+        }
+    }
+	});
+
+	$('.category').owlCarousel({
+    loop:true,
+	autoplay:false,
+	nav:false,
+	dots:true,
+	smartSpeed: 1500,
+    margin:30,
+	items:1,
+    responsiveClass:true,
+	responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:1,
+            nav:true
+        },
+		1000:{
+            items:1,
             nav:true
         }
     }
@@ -189,6 +216,7 @@ function pogody(){
 	/*clone function*/
 	$('.copyright').clone().appendTo('.address-detail');
 
+	
 /*input box animation*/
 if (!String.prototype.trim) {
 		(function() {
@@ -377,3 +405,19 @@ function animateFinish(){
 /***** Placehoder ie9 start*****/
 $('input[type=text], textarea').placeholder();
 /***** Placehoder ie9 end*****/	
+
+/*category function*/
+	
+	$('.opinionpoll').on('click', function(){
+	    $(".qualities").delay(800).fadeOut("slow");
+		$('.questions').delay(800).fadeIn("slow");
+
+	});
+
+	$('.catans').on('click', function(){
+
+	    $(".questions").delay(1800).fadeOut("slow");
+		$('.questions').delay(1800).fadeIn("slow");
+
+	});
+	
