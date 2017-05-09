@@ -1,3 +1,3 @@
 /** *************Angular app JS*********************/
 "use strict"; 
-var app = angular.module('contactApp', []);
+var app = angular.module('surveyTool', ['angular-storage']);

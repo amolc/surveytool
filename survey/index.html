@@ -18,7 +18,7 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 	</head>
 	
-	<body data-ng-app="contactApp">
+	<body data-ng-app="surveyTool">
 		<!--Preloader-->
 		<div class="preloader-it">
 			<div class="la-anim-1"></div>
@@ -166,7 +166,7 @@
 				<div class="page page-left">
 					<div class="backgroundheader">
 						</div>
-					<div  class="page-inner full-height" style="background:#282828;" >
+					<div  class="page-inner full-height" style="background:#282828;" ng-app = "surveyTool" ng-controller = "surveyCtrl" ng-init = "init()">
 						
 						<div class="container align-center detail-info">
 							
@@ -180,79 +180,30 @@
 									<span class="small-hr"></span>
 									<p class="align-center">This survey helps understand the best companies in the finanical sector for various segments. Nominate your company for each segment.</p>
 									
+									<!--Client Slider Trial -->
+									
 									<!--Client Slider-->
-									<div id="qualities">
-										<div class="qualities" > 
-											<div class="item" >
-												<span class="fa-qual"></span>
-												<span class="qual-tag">Financial Management</span>
-												<span class="qual-desc">
-													Companies from the financial Management
-												</span>
-												<span class="qual-tag" >
+									<br>
+									<div id="circus">
+										<div class="circus"> 
+											<div class="item" ng-repeat="category in category">
+												<span class="fa-qual" ></span>
+												<span class="qual-tag">• {{category.cat_name}}</span><br>
+												<p><span class="qual-desc">
+													{{category.cat_description}}
+												</span><br></p>
+												<span class="qual-tag" ><br>
 												<span>Nominated Companies<h3>200</h3></span>
-										
-												</span>
-											
-												<span class="opinionpoll">Opinion Poll</span>
-											
-											</div>
-											<div class="item" >
-												<span class="fa-qual"></i></span>
-												<span class="qual-tag">Governance Risk Compliance</span>
-												<span class="qual-desc">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.
-												</span>
-												<span class="qual-tag" >
-												<span>Nominated Companies<h3>200</h3></span>
-												
-												
-												</span>
-													<span class="opinionpoll">Opinion Poll</span>
-											</div>
-											<div class="item" >
-												<span class="fa-qual"></i></span>
-												<span class="qual-tag">Enterprise Business Management</span>
-												<span class="qual-desc">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.
-												</span>
-												<span class="qual-tag" >
-												<span>Nominated Companies<h3>200</h3></span>
-											
-										
-												</span>
-													<span class="opinionpoll">Opinion Poll</span>
-											</div>
-											<div class="item" >
-												<span class="fa-qual"></i></span>
-												<span class="qual-tag">Data Management & Advanced Analytics</span>
-												<span class="qual-desc">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.
-												</span>
-												<span class="qual-tag" >
-												<span>Nominated Companies<h3>200</h3></span>
-											
-										
-												</span>
-												<span  class="goldbtn">
-														<span class="opinionpoll">Opinion Poll</span>
-												</span>
-											</div>
-											<div class="item" >
-												<span class="fa-qual"></i></span>
-												<span class="qual-tag">Advisory Services</span>
-												<span class="qual-desc">
-													Lorem ipsum dolor sit amet, consectetur adipiscing elit adipiscing elit.
-												</span>
-												<span class="qual-tag" >
-												<span>Nominated Companies<h3>200</h3></span>
-												</span>
-												<span class="opinionpoll">Opinion Poll</span>
+											<br>
+												<span class="opinionpoll" ng-click = "survey(category.catID)"> Opinion Poll </span>
+												<br><br><br>
 											</div>
 											
 										</div>
 									</div>
+
 									<!--/Client Slider-->
+									
 									<div id="questions" class="questions">
 										<div class="question_1"> 
 											<div class="cat">
@@ -262,22 +213,16 @@
 												</div>	
 												<div class="cat-answer"> ______________</div>
 												<div class="cat-submit">
-													<span class="opinionpoll catans" style="">Submit    </span>
+													<span class="opinionpoll catans" style="">Submit</span>
 												</div>
 
-											</div>
-											
-											
-											
+											</div>	
 										
 										</div>
 									</div>
 								</div>	
 								<!--Team Slider-->
-								
-									
-								
-								
+				
 								<!--/Team Slider-->
 							</div>
 								<!--<div class="trans-overlay-dark-about"></div>-->
@@ -379,6 +324,8 @@
 		<script src="js/notifyMe.js"></script>
 		<script src="js/jquery.placeholder.js"></script>
 		<script src="js/init.js"></script>
+		<script src="js/surveyCtrl.js"></script> 
+		<script src="js/angular-storage.min.js"></script>
 	</body>
 </html>
 
