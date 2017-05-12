@@ -9,7 +9,7 @@ var db = mysql.createPool({
  });
 
  var CRUD = require('mysql-crud');
- var item=CRUD(db, 'item');
+ var itemCRUD=CRUD(db, 'item');
 
 
  exports.allitem = function(req, res) {
@@ -19,13 +19,22 @@ db.query(query, function(err, rows){
    });
  };
 
-exports.allitembycategory = function(req, res) {
-    var catId  = req.body.categoryId
-    console.log("entered allitembycategory");
-      var query = "SELECT * from item where catID = " + catId;
-db.query(query, function(err, rows){
-    res.jsonp(rows);
-   });
- };
+// exports.allitembycategory = function(req, res) {
+//     var catId  = req.body.categoryId
+//     //console.log(catId);
+//     //console.log("entered allitembycategory");
+//       var query = "SELECT * from item where catID = " + catId;
+// db.query(query, function(err, rows){
+//     res.jsonp(rows);
+//    });
+//  };
+
+  exports.findItem = function(req, res) {
+
+ 	var id = parseInt(req.params.id);
+ 	console.log(id);
+ 	itemCRUD.load({catID : id}, function (err, val) {res.jsonp(val);});
+ 	    
+}; 
 
 /******************for create new municipality it inster value in to data base*****************/

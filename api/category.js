@@ -20,4 +20,6 @@ db.query(query, function(err, rows){
  };
 
 
+
+
 /******************for create new municipality it inster value in to data base*****************/
