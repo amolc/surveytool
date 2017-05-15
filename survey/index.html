@@ -16,9 +16,11 @@
 
 		<!--CSS-->
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/ng-tags-input.min.css">
 	</head>
 
-	<body data-ng-app="surveyTool">
+	<body >
+		<div ng-app="surveyTool" ng-controller="surveyCtrl" ng-init="init()" >
 		<!--Preloader-->
 		<div class="preloader-it">
 			<div class="la-anim-1"></div>
@@ -83,7 +85,7 @@
 								<!--CONTENT CHANGED & <br> ADDED-->
 								<div class="notify-wrap">
 									<h3 class="wellcome-text" data-animation="fadeInLeft" data-animation-delay="900" data-out-animation="fadeOutLeft" data-out-animation-delay="100" data-ng-bind="notify || 'hello..'">Hello..</h3>
-									<h3 class="wellcome-text" data-animation="fadeInLeft" data-animation-delay="900" data-out-animation="fadeOutLeft" data-out-animation-delay="100" >Andre Tan</h3>
+									<h3 class="wellcome-text" data-animation="fadeInLeft" data-animation-delay="900" data-out-animation="fadeOutLeft" data-out-animation-delay="100" >{{userdata.firstname}} {{userdata.lastname}}</h3>
 									<p>
 									<p>
 									<br>
@@ -166,7 +168,7 @@
 				<div class="page page-left">
 					<div class="backgroundheader">
 						</div>
-					<div  class="page-inner full-height" style="background:#282828;" ng-app = "surveyTool" ng-controller = "surveyCtrl" ng-init = "init()">
+					<div  class="page-inner full-height" style="background:#282828;" >
 
 						<div class="container align-center detail-info">
 
@@ -175,28 +177,41 @@
 								<div class="col-lg-3 col-md-3 col-sm-3">
 									<h3>Take the survey</h3>
 								</div>
-								<div class="col-lg-9 col-md-8 col-sm-8 col-xs-9">
-									<p class="tagline">Select the best financial companies in each segment.</p>
-									<span class="small-hr"></span>
-									<p class="align-center">This survey helps understand the best companies in the finanical sector for various segments. Nominate your company for each segment.</p>
+								<div class="col-lg-9 col-md-8 col-sm-8 col-xs-9" >
 
 									<!--Client Slider Trial -->
 
 									<!--Client Slider-->
 									<br>
-									<div id="circus">
-										<div class="circus">
+									<div id="surveycategory">
+										<div class="surveycategory">
+											<p class="tagline">{{userdata.firstname}} {{userdata.lastname}}</p>
+											<p class="tagline">Please select the best financial companies in each segment.</p>
+											<span class="small-hr"></span>
+											<p class="align-center">This survey helps understand the best companies in the finanical sector for various segments. Nominate your company for each segment.</p>
+											<br><br>
 											<div class="item" ng-repeat="category in category" >
-												<span class="fa-qual" ></span>
-												<span class="qual-tag">• {{category.cat_name}}</span><br>
-												<p><span class="qual-desc">
-													{{category.cat_description}}
-												</span><br></p>
-												<span class="qual-tag" ><br>
-												<span>Nominated Companies<h3>200</h3></span>
-											<br>
-												<span class="opinionpoll" ng-click = "survey(category.catID)"> Opinion Poll </span>
-												<br><br><br>
+												<div style="width:100%;">
+												<div style="width:60%;float:left">
+													<span class="qual-tag">{{category.cat_name}}</span><br>
+													<p><span class="qual-desc">
+														{{category.cat_description}}
+													</span><br></p><p>
+														<br><br>
+													<span class="opinionpoll" ng-click = "survey(category.catID)"> Opinion Poll </span>
+													<br>
+												</div>
+													<div style="margin-left:30%">
+
+													<span>Nominated Companies<h3>{{category.cat_nominated}}</h3></span>
+
+
+													</div>
+
+
+													<hr style="color:#9e6e0d" >
+													<br>
+												</div>
 											</div>
 
 										</div>
@@ -204,36 +219,51 @@
 
 									<!--/Client Slider-->
 
-									<form class="form-horizontal">
-									<div id="square" class="square">
-										<input type="hidden" ng-model="userID">
-										<div class="square_1">
-											<span class="tagline" >Which companies do you recommend in</span>
-												<div ng-repeat="item in items">
-													<table>
-														<tr>
-															<td>{{item.item_name}}</td>
-														</tr>
-														<tr>
-															<td><input type="text" placeholder="Enter your answer here" ng-model="itemoption[item.item_ID]" ></td>
-														</tr>
-													</table>
-													<br>
-												</div>
-										</div>
-											<div class="cat-submit">
-											
-												<span class="opinionpoll catans" style="" ng-click="answer()">Submit</span>
-									
+
+									<div id="surveyitem" class="surveyitem">
+									  <form class="form-horizontal">
+									  <input type="hidden" ng-model="userID">
+									  <div class="square_1">
+									    <p class="tagline">{{userdata.firstname}} {{userdata.lastname}}</p>
+									    <p class="tagline">Please do recommend the right companies for each category.</p>
+									    <span class="small-hr"></span>
+									    <br><br>
+
+									    <div class="item" ng-repeat="item in items" style="width:80%;height:200px;" >
+									      <div style="width:60%;float:left">
+									        <span class="qual-tag">{{item.item_name}}</span><br>
+									        <br>
+									        <tags-input ng-model="itemoption[item.item_ID]" width="300" height="100">
+									              <auto-complete   source="pinkid(item.item_ID)" min-length="1" loadOnDownArrow="true"></auto-complete>
+									        </tags-input>
+									      </div>
+									    </div>
+									    <div class="cat-submit" style="padding-top:10px">
+									      <span class="opinionpoll catans" style="" ng-click="answer()">Submit</span>
+									    </div>
+
+									  </div>
+
+									  </form>
+									</div>
+
+									<div id="thankyou">
+										<div class="thankyou">
+											<div class="item" >
+												<span><h3>Thank you for the survey.</h3></span>
+
+												<h4>Loading Dashboard</h4>
+												<br>
+
+												<br><br><br>
 											</div>
-										</form>
+
+										</div>
 									</div>
 
 
 								</div>
-								<!--Team Slider-->
 
-								<!--/Team Slider-->
 							</div>
 								<!--<div class="trans-overlay-dark-about"></div>-->
 						</div>
@@ -327,6 +357,7 @@
 		<script src="js/cbpSplitLayout.js"></script>
 		<script src="js/jquery.countdown.js"></script>
 		<script src="js/typed.js"></script>
+		<script src=""//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-resource.js""></script>
 		<script src="js/app.js"></script>
 		<script src="js/controllers.js"></script>
 		<script src="js/owl.carousel.js"></script>
@@ -336,6 +367,10 @@
 		<script src="js/init.js"></script>
 		<script src="js/surveyCtrl.js"></script>
 		<script src="js/angular-storage.min.js"></script>
+	  <script src="js/ng-tags-input.min.js"></script>
+
+
+	</div>
 	</body>
 </html>
 

@@ -8,7 +8,8 @@ var path = require('path');
 
 var category = require('./api/category.js');
 var item = require('./api/item.js');
-var answer = require('./api/answer.js')
+var answer = require('./api/answer.js');
+var user = require('./api/user.js');
 
 var http = require("http").createServer(app);
 
@@ -28,11 +29,13 @@ app.use(bodyParser.raw({ limit: '50mb' }));
 
 app.get('/api/allcategory', category.allcategory);
 app.get('/api/item/:id', item.findItem);
-app.post('/api/answer', answer.createNewAnswer)
+app.get('/api/item/itemid/:itemid', item.findpinkIdByItemid);
+app.post('/api/answer', answer.createNewAnswer);
+app.post('/api/user/getUser', user.findByPassword);
 
 
 var survey = connect();
 survey.use(serveStatic('survey'));
-app.use('/',survey);
+app.use('/survey',survey);
 http.listen(3000);
 //console.log("Magic at 3000");

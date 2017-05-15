@@ -3,9 +3,9 @@ var http = require('http');
 var mysql = require('mysql');
 var db = mysql.createPool({
 	database : 'cfo_singapore',
-     user : 'ftdev',
+     user : 'cio_choice',
 	password : '10gXWOqeaf',
-    host :'apps.fountaintechies.com',
+    host :'cxohonour.com',
  });
 
  var CRUD = require('mysql-crud');

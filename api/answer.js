@@ -3,21 +3,24 @@ var http = require('http');
 var mysql = require('mysql');
 var db = mysql.createPool({
 	database : 'cfo_singapore',
-     user : 'ftdev',
+     user : 'cio_choice',
 	password : '10gXWOqeaf',
-    host :'apps.fountaintechies.com',
+    host :'cxohonour.com',
  });
 
  var CRUD = require('mysql-crud');
  var answerCRUD=CRUD(db, 'answer');
 
 
- 
+
 exports.createNewAnswer = function(req, res) {
 
    var item_ID = req.body.item_ID;
    var userID = req.body.userID;
    var user_answer = req.body.user_answer;
+	 console.log('item_ID',item_ID);
+	  console.log('userID',userID);
+		console.log('user_answer',user_answer);
 
 	answerCRUD.create({'item_ID' :item_ID,'userID' : userID,'user_answer' : user_answer}, function (err, vals) {
 
@@ -28,8 +31,7 @@ exports.createNewAnswer = function(req, res) {
 		}else{
 				var resdata={status:false,
 				message:'record not added '};
-				res.jsonp(resdata); 
+				res.jsonp(resdata);
 				}
 		});
 	 };
-

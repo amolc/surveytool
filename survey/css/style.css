@@ -34,6 +34,11 @@ strong {
 input {
     color: #000;
 }
+
+tags-input .tags {
+  background-color: #9c9c9c !important;
+  height:100px !important;
+}
 body {
   color: #000;
   background: #FFF;
@@ -42,6 +47,7 @@ body {
   font-style: normal;
   line-height: 1.5;
   overflow: hidden; }
+
 
 a:hover, a:active {
   outline: 0; }
@@ -274,7 +280,7 @@ p.tagline, .address-detail a.tagline {
 .detail-info {
   position: relative;
   z-index: 2;
-  padding-top: 5%;
+  padding-top: 2%;
   text-align: left; }
 
 .owl-carousel.owl-theme .owl-item {
@@ -304,7 +310,7 @@ p.tagline, .address-detail a.tagline {
 
 
 #qualities .owl-carousel.owl-theme .owl-item {
-  background: #fff; 
+  background: #fff;
   height:500px;}
 #qualities .owl-carousel.owl-theme .owl-item:hover {
   box-shadow: 0 0 0 4px #fff inset;
@@ -327,7 +333,7 @@ p.tagline, .address-detail a.tagline {
   #qualities .qual-tag, #qualities .name, #team .qual-tag, #team .name {
     font-size: 18px;
     font-weight: 600;
-    text-transform: uppercase; 
+    text-transform: uppercase;
     height:70px;}
   #qualities .qual-desc, #team .qual-desc {
     font-size: 12px;
@@ -386,19 +392,19 @@ p.tagline, .address-detail a.tagline {
   position: relative;
   }
   .cat .cat-question{
-   
+
     margin-top: 0px ;
     height:100px;
     position: absolute;
   }
   .cat .cat-answer{
-    
+
      margin-top:100px ;
      height:50px;
      position: absolute;
   }
 .cat .cat-submit{
-     
+
      margin-top:150px;
      margin-left:0px;
      position: absolute;
@@ -1038,7 +1044,7 @@ p.tagline, .address-detail a.tagline {
     font-size: 35px; }
 
   .detail-info {
-    padding-top: 15%; }
+    padding-top: 2%; }
 
   .side-right #countdown span, .side-right #countdown li.seperator {
     line-height: 59px; }
@@ -1214,11 +1220,11 @@ p.tagline, .address-detail a.tagline {
       transform: translateX(0px);
       position: static; }
       .page.page-left{
-        padding-bottom: 33px; 
+        padding-bottom: 33px;
         padding-top: 20%;
         }
         .detail-info h3 {
-        padding-bottom: 33px; 
+        padding-bottom: 33px;
         }
       .page.page-left .col-sm-3, .page.page-left .col-xs-9 {
         width: 75%;
@@ -1310,7 +1316,7 @@ p.tagline, .address-detail a.tagline {
 /*# sourceMappingURL=style.css.map */
 
 /* Debug classes */
-.red { 
+.red {
   border:1px solid red;
 }
 .backgroundheader {

@@ -1,5 +1,11 @@
-/** *************Angular controller JS*********************/
-"use strict"; 
+/* *************Angular controller JS*********************/
+
+// 1. Controller - Contactcontroller
+// Methods
+// 1. Form Submit
+// 2. Tags
+
+"use strict";
 app.controller('ContactController', function ($scope, $http) {
     $scope.result = 'hidden'
     $scope.resultMessage;
@@ -20,12 +26,12 @@ app.controller('ContactController', function ($scope, $http) {
                 console.log(data);
                 if (data.success) { //success comes from the return json object
                     $scope.submitButtonDisabled = false;
-		$scope.formData = null;
+	                	$scope.formData = null;
                     $scope.resultMessage = data.message;
                     $scope.result='bg-success';
                 } else {
                     $scope.submitButtonDisabled = false;
-					$scope.resultMessage = data.message;
+				           	$scope.resultMessage = data.message;
                     $scope.result='bg-danger';
                 }
             });
@@ -35,4 +41,6 @@ app.controller('ContactController', function ($scope, $http) {
             $scope.result='bg-danger';
         }
     }
+
+
 });
