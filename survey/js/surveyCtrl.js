@@ -17,7 +17,7 @@
           $scope.data.item_ID = key;
           $scope.data.userID = $scope.userdata.registration_id;
 
-          var test = [];
+          //var test = [];
           $scope.data.user_answer = "";
 
           value.forEach(function(x){
