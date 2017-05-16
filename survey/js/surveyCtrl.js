@@ -10,11 +10,29 @@
       $scope.answer = function() {
 
         angular.forEach($scope.itemoption, function(value, key) {
-          console.log(key + ":" + value);
+          //var ans = $filter("json")(value);
+          //var ans = JSON.stringify(value);
+
           $scope.data = {}
           $scope.data.item_ID = key;
           $scope.data.userID = $scope.userdata.registration_id;
-          $scope.data.user_answer = value;
+
+          var test = [];
+          $scope.data.user_answer = "";
+
+          value.forEach(function(x){
+            if(value.length > 1 ){
+                  if((''+$scope.data.user_answer).length == ""){
+                    $scope.data.user_answer = Object.values(x);
+                  }else{
+                    $scope.data.user_answer = $scope.data.user_answer + ", " + Object.values(x);
+                  }
+            }else{
+              $scope.data.user_answer = $scope.data.user_answer + Object.values(x);
+            }
+
+          });
+
 
           $http.post(baseurl + 'answer', $scope.data).success(function(res) {
             $scope.response = res;
@@ -25,8 +43,9 @@
               //alert(res.message);
             }
           }).error(function() {
-            alert("Please check your internet connection or data source..");
+              alert("Please check your internet connection or data source..");
           });
+
         });
         $("#surveyitem").fadeOut(500);
         $("#thankyou").fadeIn(200);
