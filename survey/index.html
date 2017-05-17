@@ -195,7 +195,12 @@
 												<div style="width:60%;float:left">
 													<span class="qual-tag">{{category.cat_name}}</span><br>
 													<p><span class="qual-desc">
+														
+														
 														{{category.cat_description}}
+													
+
+													
 													</span><br></p><p>
 														<br><br>
 													<span class="opinionpoll" ng-click = "survey(category.catID)"> Opinion Poll </span>
@@ -232,6 +237,12 @@
 									    <div class="item" ng-repeat="item in items" style="width:80%;height:200px;" >
 									      <div style="width:60%;float:left">
 									        <span class="qual-tag">{{item.item_name}}</span><br>
+												<!--
+												<div class="answer" ng-repeat="ans in submittedAnswer">
+											
+											
+												</div>
+												-->
 									        <br>
 									        <tags-input ng-model="itemoption[item.item_ID]" width="300" height="100">
 									              <auto-complete   source="pinkid(item.item_ID)" min-length="1" loadOnDownArrow="true"></auto-complete>

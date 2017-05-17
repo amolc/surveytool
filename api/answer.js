@@ -41,3 +41,16 @@ var db = mysql.createPool({
  	})
 
  };
+
+ exports.findAnswerById = function(req, res){
+	 console.log(parseInt(req.params.userid));
+		var data = parseInt(req.params.userid);
+
+ 		var query = 'select * from answer where `userID`="' + data + '";';
+				console.log(query);
+				db.query(query, function(err, rows){
+ 				
+ 				res.jsonp(rows);
+ 				console.log(rows);
+ 			});
+ }

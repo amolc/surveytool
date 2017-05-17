@@ -7,6 +7,9 @@
 
     app.controller('surveyCtrl', function($scope, $http, $window, $sce, $timeout,$location, store) {
 
+
+//-----------------------------------------------------------------
+      //**answer function **
       $scope.answer = function() {
 
         angular.forEach($scope.itemoption, function(value, key) {
@@ -17,7 +20,6 @@
           $scope.data.item_ID = key;
           $scope.data.userID = $scope.userdata.registration_id;
 
-          //var test = [];
           $scope.data.user_answer = "";
 
           value.forEach(function(x){
@@ -32,7 +34,6 @@
             }
 
           });
-
 
           $http.post(baseurl + 'answer', $scope.data).success(function(res) {
             $scope.response = res;
@@ -57,6 +58,8 @@
 
       }
 
+//-----------------------------------------------------------------
+      //**survey function **
       $scope.survey = function(categoryId, res) {
         $("#surveycategory").hide();
         $("#surveyitem").show("slow");
@@ -74,10 +77,11 @@
           alert("Please check your internet connection or data source..");
         });
 
-
-
+        
       }
 
+//-----------------------------------------------------------------
+      //**pinkids function **
       $scope.pinkid = function(itemId, res) {
 
         var tags = $http
@@ -97,6 +101,33 @@
 
       }
 
+//-----------------------------------------------------------------
+      //**findUserAnswer function**
+      $scope.findUserAnswer = function(userid,res){
+        console.log(userid);
+
+          $http.get(baseurl + 'answer/getAnswer/' + userid).success(function(res) {
+            //$scope.response = res;
+            if (res.status == 'false') {
+              alert(res.message);
+            } else {
+              console.log(res);
+              $scope.submittedAnswer = res;
+              $scope.submittedItemID = "";
+
+              $scope.submittedAnswer.forEach(function(x){
+                $scope.submittedItemID += " " + x.item_ID;
+              })
+              console.log($scope.submittedItemID);
+              
+            }
+          }).error(function() {
+            alert("Please check your internet connection or data source..");
+          });
+      }
+
+//-----------------------------------------------------------------
+      //**user function**
       $scope.user = function(userPassword, res) {
         console.log('user function called');
         console.log('userPassword',userPassword);
@@ -109,10 +140,11 @@
               console.log(res.message);
             } else {
               $scope.userdata = res;
+              $scope.userid = $scope.userdata.registration_id;
               console.log('scope.userdata',$scope.userdata);
               console.log('Firstname',$scope.userdata.firstname);
               console.log('Lastname',$scope.userdata.lastname);
-
+              $scope.findUserAnswer($scope.userid);
             }
           }).error(function() {
             alert("Please check your internet connection or data source..");
@@ -120,7 +152,8 @@
 
       }
 
-
+//-----------------------------------------------------------------   
+      //**init function**
       $scope.init = function() {
         $scope.itemoption = {};
 
@@ -142,7 +175,7 @@
           });
 
           console.log('location',$location);
-            console.log('location.path',$location.absUrl().search('userid'));
+          console.log('location.path',$location.absUrl().search('userid'));
 
             var url = window.location.href;
             var parts = url.split("/");
@@ -152,11 +185,6 @@
             console.log('firstTermValue',userid);
             $scope.user(userid);
             console.log('userdetails',$scope.userdata);
-
-
-
-
-
 
       }
 
