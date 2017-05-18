@@ -58,27 +58,6 @@
 
       }
 
-//-----------------------------------------------------------------
-      //**survey function **
-      $scope.survey = function(categoryId, res) {
-        $("#surveycategory").hide();
-        $("#surveyitem").show("slow");
-
-        $http.get(baseurl + 'item/' + categoryId).success(function(res) {
-          $scope.response = res;
-          if (res.status == 'false') {
-            alert(res.message);
-          } else {
-            console.log(res);
-            $scope.items = res;
-
-          }
-        }).error(function() {
-          alert("Please check your internet connection or data source..");
-        });
-
-        
-      }
 
 //-----------------------------------------------------------------
       //**pinkids function **
@@ -100,6 +79,58 @@
 
 
       }
+
+//-----------------------------------------------------------------
+      //**survey function **
+      $scope.survey = function(categoryId, res) {
+        $("#surveycategory").hide();
+        $("#surveyitem").show("slow");
+
+        $http.get(baseurl + 'item/' + categoryId).success(function(res) {
+          $scope.response = res;
+          if (res.status == 'false') {
+            alert(res.message);
+          } else {
+            console.log(res);
+            $scope.items = res;
+
+            console.log($scope.items);
+
+            $scope.items.forEach(function (x){
+              var currentItemID = x.item_ID;
+              console.log(currentItemID);
+
+              $scope.toPush = [];
+              $scope.submittedAnswer.forEach(function (y){
+                var submittedID = y.item_ID;
+                console.log(submittedID);
+                console.log(y.user_answer);
+
+                if(currentItemID == submittedID){
+                  $scope.toPush.push(y.user_answer);
+                  console.log($scope.itemoption[currentItemID]);
+                }
+              })
+              $scope.itemoption[currentItemID] = $scope.toPush;
+
+            })
+
+            // $scope.itemoption[17] = [
+            //         { text: 'just' },
+            //         { text: 'some' },
+            //         { text: 'cool' },
+            //         { text: 'tags' }
+            //     ];;
+      
+
+          }
+        }).error(function() {
+          alert("Please check your internet connection or data source..");
+        });
+        
+      }
+
+
 
 //-----------------------------------------------------------------
       //**findUserAnswer function**
