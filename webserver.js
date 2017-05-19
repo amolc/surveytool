@@ -29,8 +29,10 @@ app.use(bodyParser.raw({ limit: '50mb' }));
 
 app.get('/api/allcategory', category.allcategory);
 app.get('/api/item/:id', item.findItem);
+app.get('/api/item/findQty/:catID', item.findItemQty);
 app.get('/api/item/itemid/:itemid', item.findpinkIdByItemid);
 app.get('/api/answer/getAnswer/:userid', answer.findAnswerById)
+
 app.post('/api/answer', answer.createNewAnswer);
 app.post('/api/user/getUser', user.findByPassword);
 

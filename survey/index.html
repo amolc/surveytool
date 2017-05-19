@@ -228,22 +228,26 @@
 									<div id="surveyitem" class="surveyitem">
 									  <form class="form-horizontal">
 									  <input type="hidden" ng-model="userID">
+
+									  <div class"cat-back" style="position:absolute; left:21cm; top:-5cm">
+											<span class="opinionpoll catans" style="" ng-click="back()">Back</span>
+											
+									  </div>
+
 									  <div class="square_1">
 									    <p class="tagline">{{userdata.firstname}} {{userdata.lastname}}</p>
 									    <p class="tagline">Please do recommend the right companies for each category.</p>
 									    <span class="small-hr"></span>
+										
 									    <br><br>
 
+										
+
 									    <div class="item" ng-repeat="item in items" style="width:80%;height:200px;" >
+										
 									      <div style="width:60%;float:left">
 									        <span class="qual-tag">{{item.item_name}}</span><br>
-												<!--
-												<div class="answer" ng-repeat="ans in submittedAnswer">
-											
-											
-												</div>
-												-->
-									        <br>
+																	    
 									        <tags-input ng-model="itemoption[item.item_ID]" width="300" height="100">
 									              <auto-complete   source="pinkid(item.item_ID)" min-length="1" loadOnDownArrow="true"></auto-complete>
 									        </tags-input>

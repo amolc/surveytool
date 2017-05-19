@@ -28,6 +28,18 @@ exports.findItem = function(req, res) {
 
 };
 
+exports.findItemQty = function(req, res) {
+
+ 	var id = parseInt(req.params.catID);
+	 console.log(id);
+	var query = "select count(*) from item where `catID` = " + id;
+	db.query(query, function(err, rows){
+		res.jsonp(rows);
+   });
+ 	
+
+};
+
 exports.findpinkIdByItemid = function(req, res) {
  		var itemid = parseInt(req.params.itemid);
 		var query = "select pink_ids from item where `item_ID`=" + itemid;

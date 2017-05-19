@@ -81,6 +81,13 @@
       }
 
 //-----------------------------------------------------------------
+      //**back function **
+      $scope.back = function() {
+        $("#surveycategory").show();
+        $("#surveyitem").hide();
+      }
+
+//-----------------------------------------------------------------
       //**survey function **
       $scope.survey = function(categoryId, res) {
         $("#surveycategory").hide();
@@ -112,16 +119,19 @@
                 }
               })
               $scope.itemoption[currentItemID] = $scope.toPush;
+              
+              // $http.get(baseurl + 'item/findQty/' + categoryId).success(function(res) {
+              //   if (res.status == 'false') {
+              //     alert(res.message);
+              //   } else {
+              //     console.log(res);
+              //     $scope.itemSize = res;
+              //   }
+              //   }).error(function() {
+              //     console.log("Pinkid not found");
+              //   })  
 
             })
-
-            // $scope.itemoption[17] = [
-            //         { text: 'just' },
-            //         { text: 'some' },
-            //         { text: 'cool' },
-            //         { text: 'tags' }
-            //     ];;
-      
 
           }
         }).error(function() {
